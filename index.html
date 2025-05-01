@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    @keyframes attention-pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    .animate-pulse {
+      animation: attention-pulse 2s infinite;
+    }
+  </style>
+</head>
+<body class="bg-black bg-opacity-10 h-screen">
+
+  <!-- Navigation Bar -->
+  <div class=" fixed top-0 left-0 w-full z-50 p-2 border-b border-gray-700 bg-gray-900 bg-opacity-90">
+    <ul class="flex justify-between text-white text-lg">
+      <div class="flex space-x-5">
+        <li class="px-5 text-white rounded font-bold text-2xl">DITS</li>
+        <li class="sm:px-5 rounded  hover:bg-gray-700">
+          <a href="#home" class="sm:block hidden">Home</a>
+        </li>
+        <li class="sm:px-5 rounded  hover:bg-gray-700">
+          <a href="#about" class="sm:block hidden">About us</a>
+        </li>
+        <li class="px-5 rounded  hover:bg-gray-700">
+          <a href="#contact" class="sm:block hidden    ">
+            Contact Us
+          </a>
+        </li>
+      </div>
+      <li class="sm:x-5 pr-2 rounded  hover:bg-gray-700">
+        <button id="bookBtn">Book Appointment</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="sm:mt-16 mt-28  m-2">
+    <div id="home" class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-lg aspect-[16/9] bg-black">
+      <!-- Slides -->
+      <div id="carousel-slides" class="flex transition-transform duration-500 ease-in-out w-full h-full" style="transform: translateX(0%)">
+        <img src="img1.webp" class="w-full h-full object-contain flex-shrink-0 bg-black" alt="Slide 1" />
+        <img src="img2.webp" class="w-full h-full object-contain flex-shrink-0 bg-black" alt="Slide 2" />
+      </div>
+  
+      <!-- Controls -->
+      <button id="prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-black p-2 rounded-full shadow">
+        &#8592;
+      </button>
+      <button id="next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-black p-2 rounded-full shadow">
+        &#8594;
+      </button>
+    </div>
+  
+    <script>
+      const slides = document.getElementById('carousel-slides');
+      const totalSlides = slides.children.length;
+      let currentIndex = 0;
+  
+      function showSlide(index) {
+        slides.style.transform = `translateX(-${index * 100}%)`;
+      }
+  
+      document.getElementById('prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        showSlide(currentIndex);
+      });
+  
+      document.getElementById('next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+      });
+  
+      // Optional auto-slide every 5 seconds
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+      }, 5000);
+    </script>
+  </div>
+  
+  <!-- =========================
+       About Section
+       ========================= -->
+  <div id="about" class="grid grid-cols-1 md:grid-cols-6 gap-6 px-4 md:px-20 mt-24 items-center text-black py-8">
+    <!-- About text -->
+    <div class="md:col-span-4 bg-opacity-80 text-amber-50 rounded-xl flex flex-col items-center justify-center w-full p-4 md:p-8">
+      <h1 class="text-center font-bold text-2xl md:text-3xl mb-4">DITS - Digital Information and Tech Services</h1>
+      <div class="text-center flex flex-col justify-center items-center mt-5 w-full">
+        <p class="text-center font-light mb-4 text-base md:text-xl w-full">
+          At DITS, we understand how essential technology is in your everyday life. Whether it's a sluggish laptop, a faulty desktop, or technical troubleshooting, we've got you covered!
+        </p>
+        <p class="text-center font-light mb-4 text-base md:text-xl w-full">
+          With years of expertise in computer repairs, maintenance, and IT solutions, we take pride in delivering quick, reliable, and affordable services to keep your devices running smoothly. Customer satisfaction is our top priority, and we believe in providing honest solutions that fit your needs.
+          Need assistance? Reach out today, and let's get your tech back in top shape!
+        </p>
+        <!-- Book Appointment Button in Content -->
+        <button
+          onclick="document.getElementById('bookBtn').click()"
+          class="mt-4 bg-amber-400 text-black font-semibold px-6 py-3 rounded transition-all duration-200 shadow hover:bg-amber-500  hover:scale-105 hover:shadow-lg text-lg"
+        >
+          Book Appointment
+        </button>
+      </div>
+    </div>
+    <!-- About image -->
+    <div class="md:col-span-2 flex justify-center md:justify-end items-center w-full mt-6 md:mt-0">
+      <img class="rounded-3xl w-40 h-40 md:w-auto md:h-96 object-cover" src="image.png" alt="Placeholder Image">
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Our Services</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <img src="https://th.bing.com/th/id/R.7dc896e2f4b25b1b62a07e013e050a64?rik=NOyqc7cS305tcQ&riu=http%3a%2f%2fclipart-library.com%2fnew_gallery%2f145-1454240_laptop-png-clip-art.png&ehk=15BT9dfrTBAFyC%2fMW2B117iVJqwcMKdnYZRUhFiBVIw%3d&risl=1&pid=ImgRaw&r=0" alt="Laptop Repair" class="mb-4 w-16 h-16 object-contain">
+        <h3 class="font-semibold text-lg mb-2">Laptop Repair</h3>
+        <p class="text-gray-600 text-center">Fast and reliable laptop repair for all brands and models.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/2721/2721304.png" alt="Desktop Repair" class="mb-4 w-16 h-16">
+        <h3 class="font-semibold text-lg mb-2">Desktop Repair</h3>
+        <p class="text-gray-600 text-center">Expert desktop troubleshooting, upgrades, and maintenance.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/2889/2889676.png" alt="Virus Removal" class="mb-4 w-16 h-16">
+        <h3 class="font-semibold text-lg mb-2">Virus Removal</h3>
+        <p class="text-gray-600 text-center">Complete virus and malware removal to keep your data safe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel -->
+  <section class="max-w-2xl mx-auto px-4 py-12">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-800">What Our Clients Say</h2>
+    <div class="relative">
+      <div id="testimonial-slides" class="transition-all duration-500">
+        <!-- 10 Pre-written testimonials -->
+        <div class="testimonial-slide">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"DITS fixed my laptop faster than I expected. The staff was polite and explained everything clearly. Highly recommended!"</p>
+            <div class="font-semibold text-amber-500">- Priya S.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"Excellent service! My desktop was up and running in no time. Honest pricing and no hidden charges."</p>
+            <div class="font-semibold text-amber-500">- Rahul M.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"I was worried about losing my data, but DITS recovered everything. Their expertise in data recovery is impressive!"</p>
+            <div class="font-semibold text-amber-500">- Anjali T.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"Very professional team. They diagnosed and fixed my computer issues quickly. Great customer service!"</p>
+            <div class="font-semibold text-amber-500">- Suresh K.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"The best computer repair service in the area! They helped me upgrade my system and now it runs perfectly."</p>
+            <div class="font-semibold text-amber-500">- Meena P.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"Outstanding technical support! They helped me set up my home office equipment efficiently. Very satisfied!"</p>
+            <div class="font-semibold text-amber-500">- Vikram R.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"Quick response time and excellent repair service. They even provided tips to maintain my laptop's performance."</p>
+            <div class="font-semibold text-amber-500">- Deepa N.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"Their expertise in virus removal is exceptional. They cleaned my system thoroughly and improved its speed."</p>
+            <div class="font-semibold text-amber-500">- Arjun M.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"Fantastic service! They helped me choose and install the perfect hardware upgrades for my needs."</p>
+            <div class="font-semibold text-amber-500">- Kavita S.</div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide hidden">
+          <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+            <p class="text-gray-700 italic mb-4">"Reliable and trustworthy service. Their team is knowledgeable and always ready to help with any tech issues."</p>
+            <div class="font-semibold text-amber-500">- Rajesh P.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Buttons -->
+      <button id="testimonial-prev" class="absolute left-0 top-1/2 -translate-y-1/2 bg-amber-400 text-gray-900 rounded-full p-2 shadow hover:bg-amber-500 transition-all">
+        &#8592;
+      </button>
+      <button id="testimonial-next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-amber-400 text-gray-900 rounded-full p-2 shadow hover:bg-amber-500 transition-all">
+        &#8594;
+      </button>
+
+      <!-- Carousel Dots -->
+      <div id="testimonial-dots" class="flex justify-center mt-4 space-x-2"></div>
+    </div>
+  </section>
+
+  <!-- Location/Map Section -->
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Visit Our Service Center</h2>
+    <div class="rounded-lg overflow-hidden shadow-lg">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1963.665653913629!2d81.86447186677675!3d25.44559879246407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1746131425826!5m2!1sen!2sin"
+        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="text-center mt-4 text-gray-700">
+      <p><strong>DITS Service Center</strong></p>
+     
+      <p>Mon-Sat: 10am - 5pm</p>
+    </div>
+  </section>
+
+  <!-- Book Appointment Modal -->
+  <div id="bookModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg w-full max-w-full sm:max-w-md mx-2 p-2 sm:p-8 shadow-lg relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeBookModal()" class="absolute top-2 right-2 text-gray-500 hover:text-black text-2xl z-10">&times;</button>
+      <h2 class="text-2xl font-bold mb-4 text-center">Book Appointment</h2>
+      <form id="appointmentForm" action="https://formspree.io/f/xqaqpkao" method="POST" class="max-w-2xl mx-auto p-4 bg-white rounded-xl shadow-lg overflow-y-auto" style="max-height: 90vh;">
+        <h2 class="text-xl md:text-2xl font-bold text-center mb-4 text-gray-800">Book Your Repair Service</h2>
+
+        <!-- Personal Details - More Compact -->
+        <div class="space-y-3 mb-4">
+            <div>
+                <label class="block text-gray-700 mb-1 text-sm" for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required
+                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 mb-1 text-sm" for="email">Email Address *</label>
+                <input type="email" id="email" name="_replyto" required
+                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 mb-1 text-sm" for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required
+                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+            </div>
+        </div>
+
+        <!-- Service Type Selection - More Compact -->
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-1 text-sm">Service Type *</label>
+            <div class="grid grid-cols-2 gap-2">
+                <div class="relative">
+                    <input type="radio" id="workshop" name="serviceType" value="workshop" required
+                        class="peer hidden">
+                    <label for="workshop" 
+                        class="block p-2 border rounded-lg cursor-pointer transition-all text-sm
+                        peer-checked:border-amber-400 peer-checked:bg-amber-50
+                        hover:border-amber-400">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <span>🏪</span>
+                                <span class="font-semibold">Workshop Drop-off</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="relative">
+                    <input type="radio" id="doorstep" name="serviceType" value="doorstep" required
+                        class="peer hidden">
+                    <label for="doorstep" 
+                        class="block p-2 border rounded-lg cursor-pointer transition-all text-sm
+                        peer-checked:border-amber-400 peer-checked:bg-amber-50
+                        hover:border-amber-400">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <span>🚚</span>
+                                <span class="font-semibold">Doorstep Pickup</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address (shows only when doorstep is selected) -->
+        <div id="addressSection" class="mb-4 hidden">
+            <label class="block text-gray-700 mb-1 text-sm" for="address">Pickup Address *</label>
+            <textarea id="address" name="address" rows="2"
+                class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-amber-400"></textarea>
+        </div>
+
+        <!-- Device Details -->
+        <div class="space-y-3 mb-4">
+            <div>
+                <label class="block text-gray-700 mb-1 text-sm" for="deviceType">Device Type *</label>
+                <select id="deviceType" name="deviceType" required
+                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+                    <option value="">Select Device Type</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="desktop">Desktop</option>
+                    <option value="mobile">Mobile Phone</option>
+                    <option value="tablet">Tablet</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-gray-700 mb-1 text-sm" for="problem">Describe Your Problem *</label>
+                <textarea id="problem" name="problem" rows="2" required
+                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-amber-400"></textarea>
+            </div>
+        </div>
+
+        <!-- Formspree Settings -->
+        <input type="hidden" name="_subject" value="New DITS Repair Request">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Thank you for booking with DITS! Your repair request has been received. Order ID: {{orderId}}. We will call you shortly to discuss your device issues.">
+        <input type="hidden" id="orderId" name="orderId">
+
+        <!-- Submit Button -->
+        <button type="submit" 
+            class="w-full bg-amber-500 text-black font-semibold py-2 rounded-lg shadow-lg
+            hover:bg-amber-600 transition-all duration-300">
+            Book Appointment
+        </button>
+
+        <!-- Status Messages -->
+        <div id="loadingState" class="hidden text-center mt-2">
+            <p class="text-amber-600 text-sm">Submitting your appointment...</p>
+        </div>
+        <div id="successState" class="hidden text-center mt-2">
+            <p class="text-green-600 text-sm">Thank you! We'll call you back shortly.</p>
+            <p class="text-sm font-semibold" id="orderIdDisplay"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // ... existing carousel JS ...
+
+    // Book Appointment Modal logic
+    const bookBtn = document.getElementById('bookBtn');
+    const bookModal = document.getElementById('bookModal');
+    function closeBookModal() { bookModal.classList.add('hidden'); }
+    bookBtn.addEventListener('click', () => bookModal.classList.remove('hidden'));
+    bookModal.addEventListener('click', (e) => { if (e.target === bookModal) closeBookModal(); });
+
+    // Show a success message after submission (let Formspree handle the POST)
+    const appointmentForm = document.getElementById('appointmentForm');
+    const successMsg = document.getElementById('successMsg');
+    appointmentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // List of negative keywords (add more as needed)
+      const negativeWords = [
+        "bad", "poor", "worst", "terrible", "slow", "rude", "unhelpful", "disappoint", "not good", "awful", "hate", "problem", "issue", "delay", "expensive"
+      ];
+      const reviewContent = document.getElementById('message').value.toLowerCase();
+
+      // Check for negative words
+      const hasNegative = negativeWords.some(word => reviewContent.includes(word));
+      if (hasNegative) {
+        successMsg.classList.remove('hidden');
+        successMsg.textContent = "Only positive reviews are allowed. Please share your positive experience!";
+        successMsg.classList.add('text-red-600');
+        setTimeout(() => {
+          successMsg.classList.add('hidden');
+          successMsg.classList.remove('text-red-600');
+          successMsg.textContent = "Thank you for your review!";
+        }, 2500);
+        return;
+      }
+
+      // Create new testimonial slide
+      const slide = document.createElement('div');
+      slide.className = 'testimonial-slide hidden';
+      slide.innerHTML = `
+        <div class="bg-white rounded-xl shadow p-6 text-center flex flex-col items-center">
+          <p class="text-gray-700 italic mb-4">"${reviewContent}"</p>
+          <div class="font-semibold text-amber-500">- ${document.getElementById('name').value}</div>
+        </div>
+      `;
+      document.getElementById('testimonial-slides').appendChild(slide);
+
+      // Update slides and dots
+      const slides = document.querySelectorAll('.testimonial-slide');
+      updateDots();
+
+      // Show the new review
+      showTestimonial(slides.length - 1);
+
+      // Show success message
+      successMsg.classList.remove('hidden');
+      successMsg.textContent = "Thank you for your review!";
+      successMsg.classList.remove('text-red-600');
+      setTimeout(() => {
+        successMsg.classList.add('hidden');
+      }, 2000);
+
+      // Reset form
+      document.getElementById('appointmentForm').reset();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const dotsContainer = document.getElementById('testimonial-dots');
+      const prevBtn = document.getElementById('testimonial-prev');
+      const nextBtn = document.getElementById('testimonial-next');
+      let current = 0;
+      let interval;
+
+      function updateDots() {
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.className = `testimonial-dot w-3 h-3 rounded-full bg-amber-400 ${i === current ? 'opacity-70' : 'opacity-30'} focus:outline-none`;
+          dot.addEventListener('click', () => {
+            showTestimonial(i);
+            resetInterval();
+          });
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      function showTestimonial(idx) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('hidden', i !== idx);
+        });
+        current = idx;
+        updateDots();
+      }
+
+      function nextTestimonial() {
+        showTestimonial((current + 1) % slides.length);
+      }
+
+      function prevTestimonial() {
+        showTestimonial((current - 1 + slides.length) % slides.length);
+      }
+
+      function resetInterval() {
+        clearInterval(interval);
+        interval = setInterval(nextTestimonial, 5000);
+      }
+
+      // Slider button events
+      nextBtn.addEventListener('click', () => {
+        nextTestimonial();
+        resetInterval();
+      });
+      prevBtn.addEventListener('click', () => {
+        prevTestimonial();
+        resetInterval();
+      });
+
+      // Auto-advance every 5 seconds
+      interval = setInterval(nextTestimonial, 5000);
+
+      // Initialize
+      showTestimonial(0);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('appointmentForm');
+        const addressSection = document.getElementById('addressSection');
+        const addressInput = document.getElementById('address');
+        const loadingState = document.getElementById('loadingState');
+        const successState = document.getElementById('successState');
+        const orderIdDisplay = document.getElementById('orderIdDisplay');
+        const orderIdInput = document.getElementById('orderId');
+
+        // Generate Order ID
+        function generateOrderId() {
+            const date = new Date();
+            const year = date.getFullYear().toString().slice(-2);
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `DITS-${year}${month}${day}-${random}`;
+        }
+
+        // Handle service type selection
+        document.querySelectorAll('input[name="serviceType"]').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.value === 'doorstep') {
+                    addressSection.classList.remove('hidden');
+                    addressInput.required = true;
+                } else {
+                    addressSection.classList.add('hidden');
+                    addressInput.required = false;
+                    addressInput.value = '';
+                }
+            });
+        });
+
+        // Form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Generate and set order ID
+            const orderId = generateOrderId();
+            orderIdInput.value = orderId;
+            
+            // Show loading
+            loadingState.classList.remove('hidden');
+            successState.classList.add('hidden');
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Show success
+                    loadingState.classList.add('hidden');
+                    successState.classList.remove('hidden');
+                    orderIdDisplay.textContent = `Your Order ID: ${orderId}`;
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        form.reset();
+                        addressSection.classList.add('hidden');
+                        successState.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                alert('There was a problem submitting your appointment. Please try again.');
+                loadingState.classList.add('hidden');
+            }
+        });
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-gray-900 text-gray-200 py-6 mt-12 scroll-mt-20">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+      <div class="mb-4 md:mb-0 font-semibold">
+        &copy; 2025 DITS. All rights reserved.
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-center">
+        <a href="mailto:dits1975dd@gmail.com" class="hover:text-amber-400 transition-colors duration-200">dits1975dd@gmail.com</a>
+        <span class="hidden sm:inline">|</span>
+        <a href="tel:9451451569" class="hover:text-amber-400 transition-colors duration-200">9451451569</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp/Call Button -->
+  <a href="https://wa.me/919451451569" target="_blank"
+     class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl p-4 flex items-center space-x-2 transition-all duration-200"
+     aria-label="Chat on WhatsApp">
+    <!-- WhatsApp Icon SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12a11.94 11.94 0 0 0 1.64 6.06L0 24l6.18-1.62A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 22a9.93 9.93 0 0 1-5.13-1.41l-.37-.22-3.67.96.98-3.58-.24-.37A9.93 9.93 0 0 1 2 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.2-7.8c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.28.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.51.14-.17.18-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.62-.47-.16-.01-.36-.01-.56-.01s-.5.07-.76.36c-.26.29-1 1.01-1 2.46s1.02 2.85 1.16 3.05c.14.2 2.01 3.08 4.88 4.2.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.65-.67 1.89-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33z"/>
+    </svg>
+    <span class="hidden sm:inline font-semibold">WhatsApp</span>
+  </a>
+
+  <!-- Responsive Banner that hides on scroll -->
+  <div id="scrollBanner" class="fixed z-50 transition-all duration-300 right-0
+      lg:top-24 
+      md:top-20 
+      sm:top-16 
+      top-12">
+      <div class="bg-amber-500 text-black rounded-l-lg shadow-lg hover:bg-amber-600 transition-all duration-300
+          lg:px-4 lg:py-2
+          md:px-3 md:py-2
+          px-2 py-1">
+          <div class="flex items-center space-x-2">
+              <span class="lg:text-base md:text-sm text-xs">📞</span>
+              <p class="font-semibold whitespace-nowrap lg:text-base md:text-sm text-xs">
+                  Book Now for FREE - We'll Call You Back!
+              </p>
+          </div>
+      </div>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('scrollBanner');
+    const scrollThreshold = 100;
+
+    // Initial position check (in case page loads scrolled)
+    if (window.scrollY > scrollThreshold) {
+        banner.style.transform = 'translateX(100%)';
+        banner.style.opacity = '0';
+    }
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > scrollThreshold) {
+            // Hide banner
+            banner.style.transform = 'translateX(100%)';
+            banner.style.opacity = '0';
+        } else {
+            // Show banner
+            banner.style.transform = 'translateX(0)';
+            banner.style.opacity = '1';
+        }
+    });
+  });
+  </script>
+</body>
+</html>
